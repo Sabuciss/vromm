@@ -6,34 +6,35 @@ color: #c3c8e3 ;
 }
 </style>";
 
+require "functions.php";
+require "Database.php";
+
 echo "Hi there  <br><br>";
 // 1. Izveido datu bāzi ar tabulu
 // ielogošanās
 //Publicēt -> savienot ar datubāzi
 // 2.Savienot php ar datu bāzi  db nosaukums , parole, lietotajvards  mysql_connect
-
-// data source name
-$dsn= "mysql:host=localhost;port=3306;user=root;password=;dbname=blog_ipb23;charset=utf8mb4";
-
-//PDO - php Data object
-$pdo = new PDO($dsn);
-
 //3.Izvadīt datus uz html
-   //3.1. sagatavot vaicājumu(statement)
-$statement = $pdo->prepare("SELECT * FROM posts");
-   //3.2. izpildīt statement
-$statement->execute();
+
+$db = new Database();
+$posts = $db->query("SELECT * FROM posts");
+
+
+
    //3.3. dabut rezultatus
-$posts = $statement->fetchAll();
+//$posts = $statement->fetchAll(PDO::FETCH_ASSOC); // konstante 2 = PDO::FETCH_ASSOC      
 
-dd($posts);
+//dd($posts[0]["content"]);//dd($posts[0]["content"]);dd($posts[0]);
 
-// Dump and die
-function dd($data){
-    echo"<pre>";// sakarto daudz skaidrak datus kas ir tikti izvadīti
-    var_dump($data);
-    echo"</pre>";
-    die();
-}
+//ar foreach izvada content
+echo "<ul>";
+foreach($posts as $post){
+    
+    //echo "$post[content]<br>"; var ari šādi
+    echo"<li>" . $post["content"] . "</li>";   //kā pareizi jaraksta ul li listi br vieta
+   }
+echo "</ul>";
+   
+
 
 ?>
