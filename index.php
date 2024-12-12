@@ -9,6 +9,8 @@ color: #c3c8e3 ;
 require "functions.php";
 require "Database.php";
 
+$config = require("config.php");
+
 echo "Hi there  <br><br>";
 // 1. Izveido datu bāzi ar tabulu
 // ielogošanās
@@ -16,12 +18,11 @@ echo "Hi there  <br><br>";
 // 2.Savienot php ar datu bāzi  db nosaukums , parole, lietotajvards  mysql_connect
 //3.Izvadīt datus uz html
 
-$db = new Database();
-$posts = $db->query("SELECT * FROM posts");
+$db = new Database($config["database"]);
 
+$posts = $db->query("SELECT * FROM posts")->fetchAll();//lai nav jaraksta parak daudz citas metodes -fetchall
 
-
-   //3.3. dabut rezultatus
+//3.3. dabut rezultatus
 //$posts = $statement->fetchAll(PDO::FETCH_ASSOC); // konstante 2 = PDO::FETCH_ASSOC      
 
 //dd($posts[0]["content"]);//dd($posts[0]["content"]);dd($posts[0]);
@@ -34,6 +35,9 @@ foreach($posts as $post){
     echo"<li>" . $post["content"] . "</li>";   //kā pareizi jaraksta ul li listi br vieta
    }
 echo "</ul>";
+
+
+
    
 
 
