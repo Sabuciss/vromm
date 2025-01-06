@@ -18,3 +18,10 @@ VALUES
 
 SELECT * FROM posts;
 
+-- atrodi visus ierakstus kuriem id vienads ar 1 --
+
+SELECT * FROM posts WHERE id = 1;
+
+-- atrodi visus ierakstus kuriem content sakas ar burtu o  --
+
+SELECT * FROM posts WHERE content LIKE  "%o%";
