@@ -22,24 +22,31 @@ echo "Hi there  <br><br>";
 //Publicēt -> savienot ar datubāzi
 // 2.Savienot php ar datu bāzi  db nosaukums , parole, lietotajvards  mysql_connect
 //3.Izvadīt datus uz html
-
+ //  SELECT * FROM posts WHERE content LIKE \ 'slipsvitra ka to var izbeigt
 $db = new Database($config["database"]);
 
-$posts = $db->query("SELECT * FROM posts")->fetchAll();//lai nav jaraksta parak daudz citas metodes -fetchall
+$select = "SELECT * FROM posts"; 
 
-//var_dump(isset($_GET["search_query"]));
-if(isset($_GET["search_query"])  && $_GET["search_query"] != ""){
+$params = [];//drošībai, lai db nevrētu izdzest kk random lietotājs
+if (isset($_GET["search_query"])  && $_GET["search_query"] != ""){
     echo "Atgriest ierakstus";
-    // TODO: iegut filtrētos ierakstus
-    $posts = $db->query("SELECT * FROM posts WHERE content LIKE '%" . $_GET["search_query"] .  "%';")->fetchAll();
+    $search_query = "%" . $_GET["search_query"] . "%";
+    $select .= " WHERE content LIKE  :nosaukums"; //sql saistītie vaicājumi un parametri   sagatavaotais vaicājums
+    $params = ["nosaukums" => $search_query];   //pats paramets                  
 }
+ $posts = $db->query($select, $params)->fetchAll();//lai nav jaraksta parak daudz citas metodes -fetchall
+
 
 echo "<h1>Blogs</h1>";
 
 echo "<form >";// post un get ir jau nokluseta 
-echo "<input name='search_query' />"; //url parametrs
+echo "<input name='search_query' />"; //url parametrs lai php atpazītu
 echo "<button>Meklēt</button>";//inputiem mazakas css iespējas so poga ir labaka, teksta vieta var likt svg vai bildes and all
 echo "</form>";
+
+if (count($posts) == 0 ){
+    echo "Not found. its dead 😎";
+}
 
 //3.3. dabut rezultatus
 //$posts = $statement->fetchAll(PDO::FETCH_ASSOC); // konstante 2 = PDO::FETCH_ASSOC      
@@ -49,15 +56,11 @@ echo "</form>";
 //ar foreach izvada content
 echo "<ul>";
 foreach($posts as $post){
-    
     //echo "$post[content]<br>"; var ari šādi
     echo"<li>" . $post["content"] . "</li>";   //kā pareizi jaraksta ul li listi br vieta
    }
 echo "</ul>";
 
-
-
-   
 
 
 ?>
