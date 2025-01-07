@@ -16,12 +16,11 @@ class Database {
      }
 
 
-    public function query($sql){
-            
+    public function query($sql, $params){
         //3.1. sagatavot vaicājumu(statement)
         $statement = $this->pdo->prepare($sql);  //prepare if funkcijas metode
         //3.2. izpildīt statement
-        $statement->execute();
+        $statement->execute($params);
         return $statement;
 
 
