@@ -10,7 +10,7 @@
  <h1>Blogs</h1>
 
   <form >
-    <input name='search_query' />
+    <input name='search_query' value='<?= $_GET["search_query"] ?? ""?>'  />
     <button>Meklēt</button>
   </form>
 
@@ -23,6 +23,23 @@
     <li><?= $post["content"] ?></li> <!-- php echo-->
     <?php   } ?>
   </ul>
+  <!--
+     1. if else
+     if(isset($x)){
+        $y =$x;
+     }
+     else{
+        $y = "nav vertibas";
+     }
+
+     2. ternary operator trīškārsais operators
+     $y = isset($x) ? $x : "nav vertibas";
+
+     3. null coalescing operator
+     $y = $x ?? "nav vertibas";  simtactic sugar
+
+
+  -->
 </body>
 </html>
 
