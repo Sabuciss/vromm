@@ -25,3 +25,20 @@ SELECT * FROM posts WHERE id = 1;
 -- atrodi visus ierakstus kuriem content sakas ar burtu o  --
 
 SELECT * FROM posts WHERE content LIKE  "%o%";
+/*izveido db*/
+
+CREATE TABLE categories (
+    id INT NOT NULL  PRIMARY KEY AUTO_INCREMENT,
+    category_name VARCHAR (25)
+);
+/*ielikt saturu post tabula*/
+INSERT INTO categories
+ (category_name)
+VALUES 
+("Sports"),
+("Mūzika"),
+("Svētki");
+
+
+
+
