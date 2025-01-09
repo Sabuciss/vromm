@@ -1,4 +1,5 @@
 <?php require "component/header.php";?> <!-- p h p ir jabut lai stradatu-->
+<?php require "component/navbar.php";?>
  <h1>Blogs</h1>
 
   <form >
