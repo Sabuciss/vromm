@@ -20,7 +20,7 @@
 
   <ul>
     <?php foreach($categories as $category){ ?>
-    <li><?= $category["search_query"] ?></li>
+    <li><?= $category["category_name"] ?></li>
     <?php   } ?>
   </ul>
 
