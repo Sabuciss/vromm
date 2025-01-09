@@ -32,4 +32,5 @@ if (isset($_GET["search_query"])  && $_GET["search_query"] != ""){
  $posts = $db->query($select, $params)->fetchAll();//lai nav jaraksta parak daudz citas metodes -fetchall
 
 $pageTitle = "Blogs";
- require "views/index.view.php";  //vienmēr ir pašā apakšā
+$style = "css/style1.css";
+require "views/index.view.php";  //vienmēr ir pašā apakšā
