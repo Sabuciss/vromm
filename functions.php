@@ -1,9 +1,11 @@
 <?php
 
 // Dump and die
-function dd($data){
-    echo"<pre>";// sakarto daudz skaidrak datus kas ir tikti izvadīti
-    var_dump($data);
-    echo"</pre>";
-    die();
+if (!function_exists('dd')) {
+    function dd($data) {
+        echo "<pre>"; // Sakārto daudz skaidrāk datus, kas ir tikuši izvadīti
+        var_dump($data);
+        echo "</pre>";
+        die();
+    }
 }

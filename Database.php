@@ -1,5 +1,5 @@
 <?php
-
+if(!class_exists('Database')){
 class Database {
     public $pdo; 
 //destruktors un konstruktors
@@ -27,4 +27,5 @@ class Database {
 
     }
 
-};
+  }
+}

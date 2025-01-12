@@ -8,3 +8,4 @@
 
     <p>Pateicoties programmētāju talantam un neatlaidībai, <?= $title ?> ļoti īsā laikā kļuvusi par Latvijā vadošo blogošanas platformu. Lietotāju skaits strauji pieaug, jo cilvēki no visas Latvijas novērtē iespējas, ko piedāvā <?= $title ?>, un platformas radīto ciešo saikni starp rakstniekiem un lasītājiem.</p>
 <?php require "component/footer.php";?>
+
