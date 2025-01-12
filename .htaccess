@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# Noņem .php paplašinājumus
+RewriteRule ^(.*)\.php$ /$1 [R=301,L]
+
+# Novirza uz index.php
+RewriteRule ^ index.php [QSA,L]
