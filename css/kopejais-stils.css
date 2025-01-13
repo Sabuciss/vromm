@@ -3,6 +3,7 @@ body{
     background: rgb(94,40,108);
     background: linear-gradient(90deg, rgba(94,40,108,1) 0%, rgba(143,55,168,1) 35%, rgba(188,5,240,1) 100%);
     color: rgb(240, 240, 240);
+    font-family: 'Courier New', Courier, monospace;
 }
 header{
     border-bottom: 1px solid rgb(0,0,0,0);
@@ -19,4 +20,8 @@ header ul{
 header ul li{
     padding: 7px 15px;
     
+}
+h1{
+    color: turquoise;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
