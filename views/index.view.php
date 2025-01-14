@@ -1,5 +1,5 @@
-<?php require "component/header.php";?> <!-- p h p ir jabut lai stradatu-->
-<?php require "component/navbar.php";?>
+<?php require "views/component/header.php";?> <!-- p h p ir jabut lai stradatu-->
+<?php require "views/component/navbar.php";?>
  <h1>Blogs</h1>
 
   <form >
@@ -13,7 +13,7 @@
 
   <ul>
     <?php foreach($posts as $post){ ?>
-    <li><?= $post["content"] ?></li> <!-- php echo-->
+    <li><a href="show?id=<?= $post["id"]?>"> <?= $post["content"] ?></a></li> <!-- php echo-->
     <?php   } ?>
   </ul>
   <!--
@@ -33,8 +33,7 @@
 
 
   -->
-</body>
-</html>
+  <?php require "views/component/footer.php";?>
 
 
 
