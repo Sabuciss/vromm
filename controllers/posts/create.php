@@ -18,6 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 $pageTitle = "ierakstss";
-$style = "css/style1.css";
+$style = "css/kopejais-stils.css";
 
 require "vroom/views/posts/create.view.php";
