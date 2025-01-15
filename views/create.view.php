@@ -10,4 +10,4 @@
     <button type="submit">Izveidot</button>
 </form>
 
-<?php require "views/component/footer.php";?>
+<?php require "vromm/views/component/footer.php";?>

@@ -1,17 +1,23 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-   
-    $sql = "INSERT INTO posts (content) VALUES (:content)";
-    $params = ["content" =>$_POST["content"]];
-    $post = $db->query($sql, $params)->fetchAll();
+    $errors = [];
+    
+    if (!isset($_POST["content"]) || strlen(trim($_POST["content"])) == 0 || strlen($_POST["content"]) > 50) {
+        $errors["content"] = "Saturam jābūt ievadītam, bet ne garākam par 50 rakstzīmēm.";
+    }
 
-    header("Location: /");
-    exit();
+    if (empty($errors)) { //ja nav kļudu tad ievada db
+        $sql = "INSERT INTO posts (content) VALUES (:content)";
+        $params = ["content" => $_POST["content"]];
+        $db->query($sql, $params);
+
+        header("Location: /");
+        exit();
+    }
 }
+
 $pageTitle = "ierakstss";
 $style = "css/style1.css";
 
-require "views/posts/create.view.php";
-
-dd($_SERVER['REQUEST_METHOD']);
+require "vroom/views/posts/create.view.php";

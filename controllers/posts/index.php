@@ -33,4 +33,4 @@ if (isset($_GET["search_query"])  && $_GET["search_query"] != ""){
 
 $pageTitle = "Blogs";
 $style = "css/style1.css";
-require "views/posts/index.view.php";  //vienmēr ir pašā apakšā
+require "vromm/views/posts/index.view.php";  //vienmēr ir pašā apakšā
