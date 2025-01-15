@@ -13,7 +13,7 @@
 
   <ul>
     <?php foreach($posts as $post){ ?>
-    <li><a href="show?id=<?= $post["id"]?>"> <?= $post["content"] ?></a></li> <!-- php echo-->
+    <li><a href="show?id=<?= $post["id"]?>"> <?= htmlspecialchars($post["content"])?></a></li> <!-- php echo-->
     <?php   } ?>
   </ul>
   <!--
