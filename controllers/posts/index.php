@@ -1,7 +1,8 @@
+
 <?php
 
- require "functions.php";
- require "Database.php";
+require "functions.php";
+require "Database.php";
 
 
 //uztaisīt filtru - ierakstu meklēšana
@@ -17,20 +18,20 @@ echo "Hi there  <br><br>";
 //Publicēt -> savienot ar datubāzi
 // 2.Savienot php ar datu bāzi  db nosaukums , parole, lietotajvards  mysql_connect
 //3.Izvadīt datus uz html
- //  SELECT * FROM posts WHERE content LIKE \ 'slipsvitra ka to var izbeigt
+//  SELECT * FROM posts WHERE content LIKE \ 'slipsvitra ka to var izbeigt
 $db = new Database($config["database"]);
 
 $select = "SELECT * FROM posts"; 
 
 $params = [];//drošībai, lai db nevrētu izdzest kk random lietotājs
 if (isset($_GET["search_query"])  && $_GET["search_query"] != ""){
-    echo "Atgriest ierakstus";
-    $search_query = "%" . $_GET["search_query"] . "%";
-    $select .= " WHERE content LIKE  :nosaukums"; //sql saistītie vaicājumi un parametri   sagatavaotais vaicājums
-    $params = ["nosaukums" => $search_query];   //pats paramets                  
+   echo "Atgriest ierakstus";
+   $search_query = "%" . $_GET["search_query"] . "%";
+   $select .= " WHERE content LIKE  :nosaukums"; //sql saistītie vaicājumi un parametri   sagatavaotais vaicājums
+   $params = ["nosaukums" => $search_query];   //pats paramets                  
 }
- $posts = $db->query($select, $params)->fetchAll();//lai nav jaraksta parak daudz citas metodes -fetchall
+$posts = $db->query($select, $params)->fetchAll();//lai nav jaraksta parak daudz citas metodes -fetchall
 
 $pageTitle = "Blogs";
-$style = "css/style1.css";
-require "vromm/views/posts/index.view.php";  //vienmēr ir pašā apakšā
+$style = "css/kopejais-stils.css";
+require "views/posts/index.view.php";  //vienmēr ir pašā apakšā
