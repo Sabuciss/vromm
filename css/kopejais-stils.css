@@ -4,25 +4,37 @@ body{
     background: linear-gradient(90deg, rgba(94,40,108,1) 0%, rgba(143,55,168,1) 35%, rgba(188,5,240,1) 100%);
     color: rgb(240, 240, 240);
     font-family: 'Courier New', Courier, monospace;
-    
+    justify-content: center;
+    align-items: center;
+    margin:0 ;
 }
+.container{
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
 header{
     border-bottom: 1px solid rgb(0,0,0,0);
     box-shadow: black;
     color: rgb(155, 68, 68);
 }
 header ul{
+    text-align: center;
+    padding: 20px;
+    position: relative;
     margin: 0;
     display: flex;
     gap: 20px;
     list-style-type: none;
-    
 }
-header ul li{
-    padding: 7px 15px;
-    
+ul{
+    list-style-type: none;  
 }
 h1{
+    text-align: center;
+    padding: 20px;
+    position: relative;
     color: turquoise;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -45,7 +57,6 @@ h1{
     cursor: pointer;
   }
   .button {
-    
     display: inline-block;
     outline: 0;
     border: none;
