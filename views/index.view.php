@@ -2,20 +2,22 @@
 <?php require "views/component/navbar.php";?>
  <h1>Blogs</h1>
 
-  <form >
-    <input name='search_query' value='<?= $_GET["search_query"] ?? ""?>'  />
-    <button>Meklēt</button>
-  </form>
+<div class="container">
+   <form >
+      <input name='search_query' value='<?= $_GET["search_query"] ?? ""?>'  />
+      <button>Meklēt</button>
+   </form>
 
-<?php if (count($posts) == 0 ){ ?>
-   <p>Not found. its dead 😎</p>
-<?php } ?>
+   <?php if (count($posts) == 0 ){ ?>
+      <p>Not found. its dead 😎</p>
+   <?php } ?>
 
-  <ul>
-    <?php foreach($posts as $post){ ?>
-    <li><a href="show?id=<?= $post["id"]?>"> <?= htmlspecialchars($post["content"])?></a></li> <!-- php echo-->
-    <?php   } ?>
-  </ul>
+   <ul>
+      <?php foreach($posts as $post){ ?>
+      <li><a href="show?id=<?= $post["id"]?>"> <?= htmlspecialchars($post["content"])?></a></li> <!-- php echo-->
+      <?php   } ?>
+   </ul>
+</div>
   <!--
      1. if else
      if(isset($x)){
