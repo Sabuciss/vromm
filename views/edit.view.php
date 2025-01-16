@@ -4,13 +4,7 @@
 <h1>Edits</h1>
 <div class="container">
     <form method="POST">
-        <label>
-            <input name="content" value="<?=htmlspecialchars($_POST['content'] ?? '')?> " ></input><button class="button"type="submit">Izveidot</button>
-        </label>
-        <?php if (isset($errors["content"])): ?>
-            <p class="error"><?= htmlspecialchars($errors["content"]) ?></p>
-        <?php endif; ?>
-        
+    <input name="id" value="<?= $post["id"]?> " type="hidden"></input>
     </form>
 </div?
 <?php require "views/component/footer.php";?>
