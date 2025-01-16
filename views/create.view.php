@@ -5,12 +5,12 @@
 
 <form method="POST">
     <label>
-        <textarea name="content" required><?= isset($content) ? htmlspecialchars($content) : '' ?></textarea>
+        <input name="content" value="<?=htmlspecialchars($_POST['content'] ?? '')?> " ></input><button class="button"type="submit">Izveidot</button>
     </label>
     <?php if (isset($errors["content"])): ?>
-        <p class="error-message"><?= htmlspecialchars($errors["content"]) ?></p>
+        <p class="error"><?= htmlspecialchars($errors["content"]) ?></p>
     <?php endif; ?>
-    <button type="submit">Izveidot</button>
+    
 </form>
 
-<?php require "vromm/views/component/footer.php";?>
+<?php require "views/component/footer.php";?>
