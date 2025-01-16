@@ -1,15 +1,15 @@
 
 <?php
 
+require "Validator.php";
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $errors = [];
     
-    if (!isset($_POST["content"]) || strlen(trim($_POST["content"])) == 0 ){
-        $errors["content"] = "Saturam ir jabut";
+    if (!Validator::string($_POST["content"], max: 50)){ //kad nepieciešams ilgtermiņā piešķirt kk īpašību, kopīgota starp vairākām metodēm
+        $errors["content"] = "Saturam ir jabut, bet ne garākam par 50 rakstzīmēm";
     }
-    elseif(!isset($_POST["content"]) || strlen($_POST["content"]) > 50) {
-        $errors["content"] = "Saturam jābūt ievadītam, bet ne garākam par 50 rakstzīmēm.";
-    }
+   
     elseif (empty($errors)) { //ja nav kļudu tad ievada db
         $sql = "INSERT INTO posts (content) VALUES (:content)";
         $params = ["content" => $_POST["content"]];
