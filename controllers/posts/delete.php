@@ -1,28 +1,14 @@
 <?php
 
-require "Database.php";
+        $sql = "DELETE into posts  WHERE id = :id;";
+        
+        $params = ["id" => $_POST["id"]];
+        
+        $post = $db->query($sql, $params)->fetch();
 
-$config = require("config.php");
-$db = new Database($config["database"]);
+        header("Location: /");
+        exit();
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (!is_numeric($_POST["id"])) {
-        die("ID nav derīgs.");
-    }
-
-    $sqlCheck = "SELECT * FROM posts WHERE id = :id";
-    $post = $db->query($sqlCheck, ["id" => $_POST["id"]])->fetch();
-
-    if (!$post) {
-        die("Ieraksts ar norādīto ID neeksistē.");
-    }
-
-    $sqlDelete = "DELETE FROM posts WHERE id = :id";
-    $db->query($sqlDelete, ["id" => $_POST["id"]]);
-
-    header("Location: /");
-    exit();
-}
-
-header("Location: /");
-exit();
+ $pageTitle = "edits";
+ $style = "css/kopejais-stils.css";
+ require "views/posts/edit.view.php";
