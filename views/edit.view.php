@@ -1,19 +1,25 @@
 <?php require "views/component/header.php"; ?>
 <?php require "views/component/navbar.php"; ?>
 
-<h1>Rediģēt ierakstu</h1>
-
 <div class="container">
-    <form method="POST" action="/edit.php">
-        <input type="hidden" name="id" value="<?= htmlspecialchars($post["id"]) ?>">
 
-        <label for="content">Saturs</label>
-        <input 
-            type="text" id="content"  name="content" value="<?= htmlspecialchars($post["content"] ?? '') ?>" 
-        >
+    <h1>Redige ieraksu</h1>
 
-        <button type="submit">Saglabāt</button>
+        <form method="POST">
+
+        <label>
+        <input type="hidden" name="id" value="<?= $post["id"] ?>" />
+        </label>
+
+    
+        <label>
+        <input type="text" name="content" value="<?= $post["content"] ?? '' ?>" id="ieraksts" >
+        <button type="submit">Saglabāt</button> 
+        </label>
+
     </form>
+
+
 </div>
 
 <?php require "views/component/footer.php"; ?>
