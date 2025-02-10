@@ -20,6 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
+if(!$post){
+    redirectIFNotFound();
+}
+
 $pageTitle = "ierakstss";
 $style = "css/kopejais-stils.css";
 
