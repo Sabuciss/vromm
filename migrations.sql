@@ -41,5 +41,8 @@ VALUES
 ("Svētki");
 
 
-
+INSERT INTO posts
+(content,category_id)
+VALUES 
+("hlo", 1);
 
