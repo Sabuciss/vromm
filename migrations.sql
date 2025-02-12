@@ -9,29 +9,19 @@ CREATE TABLE posts (
     content VARCHAR (5200),
     category_id INT
 );
-/*ielikt saturu post tabula*/
-INSERT INTO posts
- ( content)
-VALUES 
-("Ziemassvētki Nākkk"),
-("Otrs bloga ierakstssss"),
-("Ka pagatavot siermaizi");
-
-SELECT * FROM posts;
-
--- atrodi visus ierakstus kuriem id vienads ar 1 --
-
-SELECT * FROM posts WHERE id = 1;
-
--- atrodi visus ierakstus kuriem content sakas ar burtu o  --
-
-SELECT * FROM posts WHERE content LIKE  "%o%";
-/*izveido db*/
-
 CREATE TABLE categories (
     id INT NOT NULL  PRIMARY KEY AUTO_INCREMENT,
     category_name VARCHAR (25)
 );
+
+/*ielikt saturu post tabula*/
+INSERT INTO posts
+ (content, category_id)
+VALUES 
+("Ziemassvētki Nākkk", 1),
+("Otrs bloga ierakstssss", 2),
+("Ka pagatavot siermaizi", 3);
+
 /*ielikt saturu post tabula*/
 INSERT INTO categories
  (category_name)
@@ -41,8 +31,4 @@ VALUES
 ("Svētki");
 
 
-INSERT INTO posts
-(content,category_id)
-VALUES 
-("hlo", 1);
 
