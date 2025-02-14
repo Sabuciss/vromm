@@ -7,11 +7,7 @@
         
         <label for="category_id">Kategorija:</label>
         <select id="category_id" name="category_id">
-                <option value=""> ...</option>
-                <option value=""> Freestyle</option>
-                <option value=""> Sports</option>
-                <option value=""> Svētki</option>
-                <option value=""> Mūzika</option>
+        
             <?php foreach ($categories as $category): ?>
                 <option value="<?= $category['id'] ?>" 
                     <?= ($post['category_id'] == $category['id']) ? 'selected' : '' ?>>
