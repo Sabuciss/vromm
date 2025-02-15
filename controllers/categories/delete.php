@@ -1,13 +1,21 @@
 <?php
 
-$sql = "DELETE FROM posts WHERE id = :id;"; 
+if (!isset($_GET["id"]) || !is_numeric($_GET["id"])) {
+    header("Location: /");
+    exit();
+}
 
-$params = ["id" => $_POST["id"]]; // Ensure id is coming from a valid POST request
+$sql = "DELETE FROM categories WHERE id = :id;"; 
 
-$post = $db->query($sql, $params); // No need for fetch() since DELETE doesn't return rows
+$params = ["id" => $_GET["id"]]; // Izmanto GET metodi, lai iegūtu ID
 
-header("Location: /");
+// Izpilda dzēšanas vaicājumu
+$category = $db->query($sql, $params); 
+
+// Pārsūta uz kategoriju sarakstu
+header("Location: /categories/index"); 
 exit();
- $pageTitle = "edits";
+
+ $pageTitle = "delete";
  $style = "css/kopejais-stils.css";
- require "views/posts/edit.view.php";
+ require "views/categories/edit.view.php";
