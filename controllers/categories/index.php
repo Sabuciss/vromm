@@ -1,4 +1,3 @@
-
 <?php
 
 require "functions.php";
@@ -9,7 +8,7 @@ $config = require("config.php");
 echo "Hi there  <br><br>";
 $db = new Database($config["database"]);
 
-$select = "SELECT * FROM posts"; 
+$select = "SELECT * FROM categories"; 
 
 $params = [];
 if (isset($_GET["search_query"])  && $_GET["search_query"] != ""){
@@ -22,4 +21,4 @@ $posts = $db->query($select, $params)->fetchAll();
 
 $pageTitle = "Blogs";
 $style = "css/kopejais-stils.css";
-require "views/posts/index.view.php";  
+require "views/categories/index.view.php";  
