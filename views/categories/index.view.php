@@ -1,6 +1,6 @@
 <?php require "views/component/header.php";?> <!-- p h p ir jabut lai stradatu-->
 <?php require "views/component/navbar.php";?>
- <h1>Blogs</h1>
+ <h1>Kategorijasss</h1>
 
 <div class="container">
    <form >
@@ -8,17 +8,15 @@
       <button>Meklēt</button>
    </form>
 
-   <?php if (count($posts) == 0 ){ ?>
+   <?php if (count($categories) == 0 ){ ?>
       <p>Not found. its dead 😎</p>
    <?php } ?>
 
    <ul>
-      <?php foreach($posts as $post){ ?>
-      <li><a href="show?id=<?= $post["id"]?>"> <?= htmlspecialchars($post["content"])?></a></li> <!-- php echo-->
+      <?php foreach($categories as $category){ ?>
+      <li><a href="show?id=<?= $category["id"]?>"> <?= htmlspecialchars($category["content"])?></a></li> 
       <?php   } ?>
    </ul>
 </div>
 
   <?php require "views/component/footer.php";?>
-
-
