@@ -3,24 +3,30 @@
 
 require "Validator.php";
 
+$sql = "SELECT * FROM categories";
+$categories = $db->query($sql, [])->fetchAll();
+
+$errors = [];
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $errors = [];
-    
-    if (!Validator::string($_POST["content"], max: 50)){ //kad nepieciešams ilgtermiņā piešķirt kk īpašību, kopīgota starp vairākām metodēm
-        $errors["content"] = "Saturam ir jabut, bet ne garākam par 50 rakstzīmēm";
+    if (!Validator::string($_POST["content"], max: 50)) {
+        $errors["content"] = "Saturam ir jābūt.";
     }
-   
-    elseif (empty($errors)) { //ja nav kļudu tad ievada db
-        $sql = "INSERT INTO posts (content) VALUES (:content)";
-        $params = ["content" => $_POST["content"]];
+
+    if (!empty($_POST["category_id"]) && !Validator::number($_POST["category_id"])) {
+        $errors["category_id"] = "Nederīgs kategorijas ID.";
+    }
+
+    if (empty($errors)) {
+        $sql = "INSERT INTO posts (content, category_id) VALUES (:content, :category_id)";
+        $params = ["content" => $_POST["content"],"category_id" => $_POST["category_id"] ?: null];
         $db->query($sql, $params);
 
         header("Location: /");
         exit();
     }
 }
-
 $pageTitle = "ierakstss";
-$style = "css/kopejais-stils.css";
+$style = "css\kopejais-stils.css";
 
 require "views/posts/create.view.php";
