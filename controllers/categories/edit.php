@@ -1,24 +1,36 @@
-<?php
 
-require "functions.php";
+<?php
 require "Database.php";
 
-$config = require("config.php");
+require "Validator.php";
 
-echo "Hi there  <br><br>";
-$db = new Database($config["database"]);
+$sql = "SELECT * FROM categories"; 
+$categories = $db->query($sql, [])->fetchAll();
 
-$select = "SELECT * FROM categories"; 
-
-$params = [];
-if (isset($_GET["search_query"])  && $_GET["search_query"] != ""){
-   echo "Atgriest ierakstus";
-   $search_query = "%" . $_GET["search_query"] . "%";
-   $select .= " WHERE content LIKE  :nosaukums"; 
-   $params = ["nosaukums" => $search_query];               
+if(isset($_GET["id"])){
+    $sql = "SELECT * FROM categories WHERE id = :id;"; 
+    $params = ["id" => $_GET["id"]];
+    $category = $db->query($sql, $params)->fetch();
 }
-$posts = $db->query($select, $params)->fetchAll();
 
-$pageTitle = "Blogs";
-$style = "css/kopejais-stils.css";
-require "views/categories/index.view.php";  
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $errors = [];
+    
+    if (!Validator::string($_POST["category_name"], max: 50)){
+    $errors["category_name"]= "Saturam ir jabut";
+    }
+   
+    elseif (empty($errors)) {
+        $sql = "UPDATE categories SET category_name = :category_name WHERE id = :id;";
+        $params = ["id" => $_POST["id"], "category_name" => $_POST["category_name"] ];
+        $db->query($sql, $params);
+
+        header("Location: /categories/show?id=" . $_POST["id"]);
+        exit();
+    }
+}
+var_dump($categories);
+
+ $pageTitle = "Kategorijas edits";
+ $style = "css/kopejais-stils.css";
+ require "views/categories/edit.view.php";
