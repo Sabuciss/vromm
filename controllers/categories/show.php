@@ -1,5 +1,7 @@
 <?php
 
+require "Database.php";
+
 if(!isset($_GET["id"]) || $_GET["id"] == ""){
  redirectIFNotFound();
     
@@ -14,6 +16,7 @@ if(!isset($_GET["id"]) || $_GET["id"] == ""){
 if(!$category){
     redirectIFNotFound();
 }
+
 $pageTitle ="kategorijas";
 $style = "css/kopejais-stils.css";
 require "views/posts/show.view.php";
