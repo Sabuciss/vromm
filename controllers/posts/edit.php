@@ -1,6 +1,6 @@
-
 <?php
 
+require "Database.php";
 require "Validator.php";
 
 if(isset($_GET["id"])){
@@ -8,6 +8,9 @@ if(isset($_GET["id"])){
     $params = ["id" => $_GET["id"]];
     $post = $db->query($sql, $params)->fetch();
 }
+
+$sql = "SELECT * FROM categories";
+$categories = $db->query($sql, [])->fetchAll();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $errors = [];
@@ -17,8 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
    
     elseif (empty($errors)) {
-        $sql = "UPDATE posts SET content = :content WHERE id = :id;";
-        $params = ["id" => $_POST["id"], "content" => $_POST["content"] ];
+        $sql = "UPDATE posts SET content = :content, category_id = :category_id WHERE id = :id";
+        $params = ["id" => $_POST["id"], "content" => $_POST["content"], "category_id" => $_POST["category_id"] ];
         $post = $db->query($sql, $params)->fetch();
 
         header("Location: /show?id=" . $_POST["id"]);
