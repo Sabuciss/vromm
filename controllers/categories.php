@@ -1,5 +1,4 @@
 <?php
-require "css/kopejais-stils.css";
 require "functions.php";
 require "Database.php";
 
@@ -18,6 +17,7 @@ if (isset($_GET["search_query"]) && $_GET["search_query"] != ""){
     $params = ["nosaukums" => $search_query];                 
 }
  $categories = $db->query($select, $params)->fetchAll();
+
 $pageTitle ="kategorijas";
- $style = "css/style2.css";
- require "views/categories.view.php";
+$style = "css/kopejais-stils.css";
+require "views/categories.view.php";
