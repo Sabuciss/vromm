@@ -5,7 +5,7 @@
 <div class="container">
    <form >
       <input name='search_query' value='<?= $_GET["search_query"] ?? ""?>'  />
-      <button>Meklēt</button>
+      <button class="button">Meklēt</button>
    </form>
 
    <?php if (count($posts) == 0 ){ ?>
@@ -36,6 +36,3 @@
 
   -->
   <?php require "views/component/footer.php";?>
-
-
-
