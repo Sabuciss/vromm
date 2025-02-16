@@ -1,31 +1,24 @@
-
 <?php
 
-require "Validator.php";
+require "functions.php";
+require "Database.php";
 
-if(isset($_GET["id"])){
-    $sql = "SELECT * FROM categories WHERE id = :id;"; 
-    $params = ["id" => $_GET["id"]];
-    $category = $db->query($sql, $params)->fetch();
+$config = require("config.php");
+
+echo "Hi there  <br><br>";
+$db = new Database($config["database"]);
+
+$select = "SELECT * FROM categories"; 
+
+$params = [];
+if (isset($_GET["search_query"])  && $_GET["search_query"] != ""){
+   echo "Atgriest ierakstus";
+   $search_query = "%" . $_GET["search_query"] . "%";
+   $select .= " WHERE content LIKE  :nosaukums"; 
+   $params = ["nosaukums" => $search_query];               
 }
+$posts = $db->query($select, $params)->fetchAll();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $errors = [];
-    
-    if (!Validator::string($_POST["category_name"], max: 50)){
-    $errors["category_name"]= "Saturam ir jabut";
-    }
-   
-    elseif (empty($errors)) {
-        $sql = "UPDATE categories SET category_name = :category_name WHERE id = :id;";
-        $params = ["id" => $_POST["id"], "category_name" => $_POST["category_name"] ];
-        $category = $db->query($sql, $params)->fetch();
-
-        header("Location: /categories/show?id=" . $_POST["id"]);
-        exit();
-    }
-}
-
- $pageTitle = "Kategorijas edits";
- $style = "css/kopejais-stils.css";
- require "views/categories/edit.view.php";
+$pageTitle = "Blogs";
+$style = "css/kopejais-stils.css";
+require "views/categories/index.view.php";  
