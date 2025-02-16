@@ -5,7 +5,7 @@
 
 <p><strong>Kategorija:</strong> <?= $post['category_name'] ?: "Nav kategorijas" ?></p>
 
-<button><a href="edit?id=<?=$post["id"] ?>">Rediģēt </a><button>
+<button ><a href="edit?id=<?=$post["id"] ?>">Rediģēt </a><button>
  
  <form method="POST" action="/delete" >
  <input name="id" value="<?= $post["id"]  ?>" type="hidden" />
