@@ -1,9 +1,8 @@
 <?php
-require "css/kopejais-stils.css";
+
 
 $title = "Blogu revolūcija";
 $pageTitle = "storyy";
-$style = "css/style3.css";
 
-// nosūta nepieciešamo uz vajdzīgo failu
+$style = "css/kopejais-stils.css";
 require "views/story.view.php";
