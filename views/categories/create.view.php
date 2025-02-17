@@ -6,13 +6,13 @@
     <form method="POST">
         <label for="name">
             Kategorijas nosaukums:
-            <input type="text" name="name" id="name" value="<?= htmlspecialchars($_POST['name'] ?? '') ?>" required>
+            <input type="text" name="category_name" id="category_name" value="<?= htmlspecialchars($_POST['category_name'] ?? '') ?>" required>
         </label>
 
         <button class="button" type="submit">Izveidot</button>
 
-        <?php if (isset($errors["name"])): ?>
-            <p class="error"><?= htmlspecialchars($errors["name"]) ?></p>
+        <?php if (isset($errors["category_name"])): ?>
+            <p class="error"><?= htmlspecialchars($errors["category_name"]) ?></p>
         <?php endif; ?>
     </form>
 </div>
