@@ -2,9 +2,9 @@
 
 $sql = "DELETE FROM categories WHERE id = :id;"; 
 
-$params = ["id" => $_POST["category_id"]]; // Ensure id is coming from a valid POST request
+$params = ["id" => $_POST["category_id"]]; 
 
- $db->query($sql, $params); // No need for fetch() since DELETE doesn't return rows
+ $db->query($sql, $params);
 
 header("Location: /categories/index.php");
 exit();
