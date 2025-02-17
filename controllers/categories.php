@@ -20,4 +20,4 @@ if (isset($_GET["search_query"]) && $_GET["search_query"] != ""){
 
 $pageTitle ="kategorijas";
 $style = "css/kopejais-stils.css";
-require "views/categories.view.php";
+require "views/categories.view.php"; 
