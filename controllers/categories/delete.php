@@ -1,20 +1,16 @@
 <?php
 
-if (!isset($_GET["id"]) || !is_numeric($_GET["id"])) {
-    header("Location: /");
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $sql = "DELETE FROM categories WHERE id = :id;"; 
+    $params = ["id" => $_GET["id"]]; // Izmanto GET metodi, lai iegūtu ID
+    $category = $db->query($sql, $params);// Izpilda dzēšanas vaicājumu
+    header("Location: /categories/index.php"); 
     exit();
-}
+   }
 
-$sql = "DELETE FROM categories WHERE id = :id;"; 
-
-$params = ["id" => $_GET["id"]]; // Izmanto GET metodi, lai iegūtu ID
-
-// Izpilda dzēšanas vaicājumu
-$category = $db->query($sql, $params); 
 
 // Pārsūta uz kategoriju sarakstu
-header("Location: /categories/index"); 
-exit();
+
 
  $pageTitle = "delete";
  $style = "css/kopejais-stils.css";
