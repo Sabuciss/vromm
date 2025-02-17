@@ -4,7 +4,7 @@
 <h1>Izveido kategoriju</h1>
 <div class="container">
     <form method="POST">
-        <label for="name">
+        <label for="category_name">
             Kategorijas nosaukums:
             <input type="text" name="category_name" id="category_name" value="<?= htmlspecialchars($_POST['category_name'] ?? '') ?>" required>
         </label>
