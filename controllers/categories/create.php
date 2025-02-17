@@ -1,23 +1,27 @@
-<?php
+<?php 
 
 require "Validator.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $errors = [];
     
-    if (!Validator::string($_POST["category_name"], min:3 , max: 50)){ //kad nepieciešams ilgtermiņā piešķirt kk īpašību, kopīgota starp vairākām metodēm
-        $errors["category_name"] = "Kategorijai ir jabut";
+    // Validācija: pārbaudām, vai nosaukums ir derīgs
+    if (!Validator::string($_POST["category_name"], min:3, max: 50)){
+        $errors["category_name"] = "Kategorijai jābūt no 3 līdz 50 simboliem.";
     }
-   
-    elseif (empty($errors)) { //ja nav kļudu tad ievada db
+
+    // Ja nav kļūdu, ievadām jauno kategoriju datubāzē
+    if (empty($errors)) { 
         $sql = "INSERT INTO categories (category_name) VALUES (:category_name)";
         $params = ["category_name" => $_POST["category_name"]];
         $db->query($sql, $params);
 
-        header("Location: /");
+        header("Location: /categories/index");
         exit();
     }
 }
 
-$pageTitle = "Kategorijas ieraksts";
-require "views/categories/create.view.php";
+$pageTitle = "Kategorijas pievienošana";
+$style = "css/kopejais-stils.css";
+require "views/categories/create.view.php"; 
+?>
