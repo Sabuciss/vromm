@@ -2,14 +2,16 @@
 
 require "Database.php";
 
-    $sql = "SELECT * FROM categories WHERE id = :id ;";
-    $params = ["id" => $_GET["id"]];
-    $category = $db->query($sql, $params)->fetch();
+$sql = "SELECT * FROM categories WHERE id = :id ;";
+$params = ["id" => $_GET["id"]];
+$category = $db->query($sql, $params)->fetch();
 
-if(!$post){
-    redirectIFNotFound();
+if(!$category){
+    header("Location: /categories/index.php");
+        exit();
 }
 
-$pageTitle ="kategorijas";
-$style = "/css/kopejais-stils.css";
-require "views/posts/show.view.php";
+$pageTitle = "Kategorijas";
+$style = "css/kopejais-stils.css";
+require "views/categories/show.view.php"; 
+?>
