@@ -21,16 +21,16 @@ echo "Hi there  <br><br>";
 //  SELECT * FROM posts WHERE content LIKE \ 'slipsvitra ka to var izbeigt
 $db = new Database($config["database"]);
 
-$select = "SELECT * FROM posts"; 
+$sql = "SELECT * FROM posts"; 
 
 $params = [];//drošībai, lai db nevrētu izdzest kk random lietotājs
 if (isset($_GET["search_query"])  && $_GET["search_query"] != ""){
    echo "Atgriest ierakstus";
    $search_query = "%" . $_GET["search_query"] . "%";
-   $select .= " WHERE content LIKE  :nosaukums"; //sql saistītie vaicājumi un parametri   sagatavaotais vaicājums
+   $sql .= " WHERE content LIKE  :nosaukums"; //sql saistītie vaicājumi un parametri   sagatavaotais vaicājums
    $params = ["nosaukums" => $search_query];   //pats paramets                  
 }
-$posts = $db->query($select, $params)->fetchAll();//lai nav jaraksta parak daudz citas metodes -fetchall
+$posts = $db->query($sql, $params)->fetchAll();//lai nav jaraksta parak daudz citas metodes -fetchall
 
 $pageTitle = "Blogs";
 $style = "css/kopejais-stils.css";
