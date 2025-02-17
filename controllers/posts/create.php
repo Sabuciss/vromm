@@ -1,4 +1,3 @@
-
 <?php
 
 require "Validator.php";
@@ -18,15 +17,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($errors)) {
+        $category_id = !empty($_POST["category_id"]) ? (int) $_POST["category_id"] : null;
+
         $sql = "INSERT INTO posts (content, category_id) VALUES (:content, :category_id)";
-        $params = ["content" => $_POST["content"],"category_id" => $_POST["category_id"] ?: null];
+        $params = [
+            "content" => $_POST["content"],
+            "category_id" => $category_id
+        ];
         $db->query($sql, $params);
 
         header("Location: /");
         exit();
     }
 }
+
 $pageTitle = "ierakstss";
-$style = "css\kopejais-stils.css";
+$style = "css/kopejais-stils.css";
 
 require "views/posts/create.view.php";
