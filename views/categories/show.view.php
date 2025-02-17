@@ -9,7 +9,7 @@
  
  <form method="POST" action="/delete" >
  <input name="id" value="<?= $post["id"]  ?>" type="hidden" />
-    <input type="submit" value="dzest"/>
+    <button class="button">dzest</button>
 </form> 
 
 <?php require "views/component/footer.php";?>
