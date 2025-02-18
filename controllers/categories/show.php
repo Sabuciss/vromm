@@ -2,13 +2,15 @@
 
 require "Database.php";
 
+if (!isset($_GET["id"]) || $_GET["id"] == "") {
+    redirectIFNotFound();
+}
 $sql = "SELECT * FROM categories WHERE id = :id ;";
 $params = ["id" => $_GET["id"]];
-$category = $db->query($sql, $params)->fetch();
+$post = $db->query($sql, $params)->fetch();
 
-if(!$category){
-    header("Location: /categories/index.php");
-        exit();
+if(!$post){
+    redirectIFNotFound();
 }
 
 $pageTitle = "Kategorijas";
