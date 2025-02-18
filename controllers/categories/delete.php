@@ -1,14 +1,19 @@
 <?php
+require "Database.php";
 
-$sql = "DELETE FROM categories WHERE id = :id;"; 
+if(isset($_POST["id"])){
+$sql ="DELETE FROM posts WHERE id = :id;";
+$params = ["id" => $_POST["id"]]; 
+$post = $db->query($sql, $params); 
+}
+if (!$post) {
+    die("Category not found");
+}
 
-$params = ["id" => $_POST["category_id"]]; 
-
- $db->query($sql, $params);
-
-header("Location: /categories/index.php");
+header("Location: /categories");
 exit();
+
 
  $pageTitle = "edits";
  $style = "css/kopejais-stils.css";
- require "views/posts/edit.view.php";
+ require "views/categories/edit.view.php";
