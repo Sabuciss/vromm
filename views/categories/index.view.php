@@ -14,8 +14,8 @@
 
    <ul>
       <?php foreach($categories as $category){ ?>
-      <li><a href="show?id=<?= $category["id"]?>"> <?= htmlspecialchars($category["search_query"])?></a></li> <!-- php echo-->
-      <?php   } ?>
+         <li><a href="show?id=<?= $category["id"]?>"> <?= htmlspecialchars($category["category_name"])?></a></li>
+         <?php   } ?>
    </ul>
 </div>
 
