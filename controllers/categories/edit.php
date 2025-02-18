@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
 }
-}
+
 
 $pageTitle = "Kategorijas rediģēšana";
 $style = "css/kopejais-stils.css";
