@@ -2,8 +2,8 @@
 
 require "Database.php";
 
-$sql = "DELETE FROM categories WHERE id = :id ;";
-$params = ["id" => $_GET["id"]];
+$sql = "DELETE FROM categories WHERE category_name = :id ;";
+$params = ["id" => $_POST["id"]];
 $category = $db->query($sql, $params)->fetch();
 
 if(!$category){
