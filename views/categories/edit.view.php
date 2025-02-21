@@ -9,10 +9,11 @@
         <input type="text" id="category_name" name="category_name" value="<?= htmlspecialchars($category['category_name']) ?>" required />
         <button type="submit">Saglabāt izmaiņas</button>
     </form>
-
     <form method="POST" action="/categories/delete">
-        <button type="submit"  >Dzēst kategoriju</button>
+        <input type="hidden" name="id" value="<?= htmlspecialchars($category["category_name"]) ?>" />
+        <button type="submit">Dzēst kategoriju</button>
     </form>
+
 </div>
 
 <?php require "views/component/footer.php"; ?>
